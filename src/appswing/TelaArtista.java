@@ -1,9 +1,4 @@
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- *
- */
+
 package appswing;
 
 import java.awt.Color;
@@ -146,12 +141,11 @@ public class TelaArtista {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(textField.getText().isEmpty() || textField_1.getText().isEmpty()) {
+					if(textField.getText().isEmpty()) {
 						label.setText("campo vazio");
 						return;
 					}
-					String cpf = textField.getText();
-					String nome = textField_1.getText();
+					String nome = textField.getText();
 					Fachada.cadastrarArtista(nome);
 					label.setText("Artista criado: "+ nome);
 					listagem();
@@ -175,18 +169,6 @@ public class TelaArtista {
 		button.setBounds(308, 11, 89, 23);
 		frame.getContentPane().add(button);
 
-		label_3 = new JLabel("nome:");
-		label_3.setHorizontalAlignment(SwingConstants.LEFT);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_3.setBounds(281, 269, 63, 14);
-		frame.getContentPane().add(label_3);
-
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(336, 264, 168, 20);
-		frame.getContentPane().add(textField_1);
-
 		button_2 = new JButton("Apagar selecionado");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -195,7 +177,7 @@ public class TelaArtista {
 						label.setText("nao implementado " );
 						String nome = (String) table.getValueAt( table.getSelectedRow(), 0);
 						Fachada.excluirArtista(nome);
-						label.setText("cliente apagado" );
+						label.setText("artista apagado" );
 						listagem();
 					}
 					else

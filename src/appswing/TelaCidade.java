@@ -1,9 +1,4 @@
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- *
- */
+
 package appswing;
 
 import java.awt.Color;
@@ -147,7 +142,7 @@ public class TelaCidade {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(textField.getText().isEmpty() || textField_1.getText().isEmpty()) {
+					if(textField.getText().isEmpty()) {
 						label.setText("campo vazio");
 						return;
 					}
@@ -200,7 +195,7 @@ public class TelaCidade {
 		button_2.setBounds(281, 213, 171, 23);
 		frame.getContentPane().add(button_2);
 
-		button_3 = new JButton("exibir cidades");
+		button_3 = new JButton("exibir apresentacoes");
 		button_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -208,17 +203,24 @@ public class TelaCidade {
 					if (table.getSelectedRow() >= 0){	
 						String nome = (String) table.getValueAt( table.getSelectedRow(), 0);
 						Cidade cid = Fachada.localizarCidade(nome);
-
+						
 						if(cid != null) {
 							String texto="";
-							if(cid.getApresentacoes().isEmpty())
-								texto = "nao possui apresentacoes";
-							else
-								for (Apresentacao a : cid.getApresentacoes()){
-									texto = texto + a.getId()+ "-" + a.getData() + "-" + a.getArtista() + a.getPrecoIngresso()+ "\n";
-								}
+                                List<Apresentacao> apresentacoes = Fachada.listarApresentacao();
+                            boolean encontrouApresentacoes = false;
 
-							JOptionPane.showMessageDialog(frame, texto, "alugueis", 1);
+                            for (Apresentacao a : apresentacoes) {
+                                if (a.getCidade().equals(cid)) {
+                                    encontrouApresentacoes = true;
+                                    texto += a.getId() + " - " + a.getData() + " - " + a.getArtista().getNome() + " - " + a.getPrecoIngresso() + "\n";
+                                }
+                            }
+
+                            if (!encontrouApresentacoes) {
+                                texto = "Não possui apresentações nesta cidade.";
+                            }
+
+							JOptionPane.showMessageDialog(frame, texto, "Apresentações", 1);
 						}
 					}
 				}

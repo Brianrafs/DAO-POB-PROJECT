@@ -1,9 +1,4 @@
 package appswing;
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POO
- * Prof. Fausto Maranh�o Ayres
- **********************************/
 
 import java.awt.Font;
 import java.awt.Image;
@@ -50,7 +45,7 @@ public class TelaPrincipal {
 	 */
 	public TelaPrincipal() {
 		initialize();
-		frame.setTitle("Locadora - usuario: "+ Fachada.logado.getNome());
+		frame.setTitle("Cronograma - usuario: "+ Fachada.logado.getNome());
 		frame.setVisible(true);
 	}
 

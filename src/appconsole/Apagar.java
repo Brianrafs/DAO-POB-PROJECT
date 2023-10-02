@@ -1,9 +1,3 @@
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- *
- */
 
 package appconsole;
 
@@ -16,6 +10,7 @@ public class Apagar {
 		try {
 			Fachada.inicializar();
 			Fachada.excluirArtista("Fausto Ayres");
+			Fachada.excluirApresentacao(1);
 			System.out.println("Artista excluido");
 
 		} catch (Exception e) {
